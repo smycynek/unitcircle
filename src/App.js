@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import InputNumber from "rc-input-number";
-import "rc-input-number/assets/index.css";
-import "./App.css";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-filename-extension */
+import React, { useState } from 'react';
+import InputNumber from 'rc-input-number';
+import 'rc-input-number/assets/index.css';
+import './App.css';
 import roundTwo from './utility';
-import UnitCircle from "./UnitCircle";
+import UnitCircle from './UnitCircle';
+
 function App() {
   const [degreeInput, setDegreeInput] = useState(45);
   const handleChangeDegree = (value) => {
@@ -17,17 +20,18 @@ function App() {
   return (
     <div>
       <h1>Unit Circle Fun</h1>
-      <label style={{ padding: 5 }} htmlFor="radians">
+      <label style={{ padding: 5 }} htmlFor="degrees">
         Degrees
-      </label>{" "}
+      </label>
       <div>
         <InputNumber
+          id="degrees"
           name="degrees"
           min={0}
           max={360}
           style={{
-            borderWidth: "2px",
-            borderColor: "black",
+            borderWidth: '2px',
+            borderColor: 'black',
             margin: 4,
             padding: 5,
             width: 100,
@@ -37,8 +41,7 @@ function App() {
           value={degreeInput}
           onChange={handleChangeDegree}
           usetouch
-        />{" "}
-       
+        />
       </div>
       <div>
         <input
@@ -52,12 +55,16 @@ function App() {
           id="degreeRange"
         />
       </div>
-      <div>Radians: {  roundTwo((Math.PI / 180) * degreeInput) }</div>
+      <div>
+        Radians:
+        {' '}
+        { roundTwo((Math.PI / 180) * degreeInput) }
+      </div>
       <UnitCircle degrees={degreeInput} />
-      <hr/>
+      <hr />
       <a href="https://github.com/smycynek/unitcircle">https://github.com/smycynek/unitcircle</a>
     </div>
-   );
+  );
 }
 
 export default App;

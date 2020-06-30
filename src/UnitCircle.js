@@ -1,15 +1,19 @@
-import React from "react";
-import "./App.css";
-import roundTwo from "./utility";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/jsx-one-expression-per-line */
 
-const UnitCircle = (props) => {
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import './App.css';
+import roundTwo from './utility';
+
+const UnitCircle = ({ degrees }) => {
   const positionFromRadians = (radians) => {
     const x = Math.cos(radians);
     const y = Math.sin(radians);
     const z = Math.tan(radians);
     return [x, y, z];
   };
-  const radians = (Math.PI / 180) * props.degrees;
+  const radians = (Math.PI / 180) * degrees;
   const pos = positionFromRadians(radians);
   const xoff = pos[0] * 75;
   const yoff = pos[1] * 75;
@@ -60,27 +64,35 @@ const UnitCircle = (props) => {
         <div className="row">
           <div className="col-sm">
             <span className="text-dark">
-              sin({props.degrees})={roundTwo(pos[1])}{" "}
+              sin({degrees})={roundTwo(pos[1])}{' '}
             </span>
           </div>
         </div>
         <div className="row">
           <div className="col-sm">
             <span className="text-dark">
-              cos({props.degrees})={roundTwo(pos[0])}{" "}
+              cos({degrees})={roundTwo(pos[0])}{' '}
             </span>
           </div>
         </div>
         <div className="row">
           <div className="col-sm">
             <span className="text-dark">
-              tan({props.degrees})={roundTwo(pos[2])}{" "}
+              tan({degrees})={roundTwo(pos[2])}{' '}
             </span>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+UnitCircle.propTypes = {
+  degrees: PropTypes.number,
+};
+
+UnitCircle.defaultProps = {
+  degrees: 45,
 };
 
 export default UnitCircle;
